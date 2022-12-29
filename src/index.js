@@ -2,6 +2,7 @@ import { wrapStep } from '@w4rlock/semantic-release-plugin-decorators';
 import { compose } from 'ramda';
 import readPkg from 'read-pkg';
 import logPluginVersion from './log-plugin-version.js';
+import getPackageInfoSync from './package-info.js';
 import { withOnlyPackageCommits } from './only-package-commits.js';
 import versionToGitTag from './version-to-git-tag.js';
 
@@ -51,4 +52,4 @@ export const fail = wrapStep(
   }
 );
 
-export const tagFormat = `${readPkg.sync().name}-v\${version}`;
+export const tagFormat = `${getPackageInfoSync().name}-v\${version}`;

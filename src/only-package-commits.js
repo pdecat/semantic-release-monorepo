@@ -1,9 +1,9 @@
 import debug from 'debug';
 import pLimit from 'p-limit';
+import getPackageInfo from "./package-info.js";
 import path from 'path';
 import pkgUp from 'pkg-up';
 import { identity, memoizeWith, pipeP } from 'ramda';
-import readPkg from 'read-pkg';
 import { getCommitFiles, getRoot } from './git-utils.js';
 import { mapCommits } from './options-transforms.js';
 
@@ -15,7 +15,7 @@ const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
  * Get the normalized PACKAGE root path, relative to the git PROJECT root.
  */
 const getPackagePath = async () => {
-  const packagePath = await pkgUp();
+  const packagePath = await pkgUp() || './package.json';
   const gitRoot = await getRoot();
 
   return path.relative(gitRoot, path.resolve(packagePath, '..'));
@@ -66,7 +66,7 @@ const tapA = (fn) => async (x) => {
 const logFilteredCommitCount =
   (logger) =>
   async ({ commits }) => {
-    const { name } = await readPkg();
+    const { name } = await getPackageInfo();
 
     logger.log('Found %s commits for package %s since last release', commits.length, name);
   };
