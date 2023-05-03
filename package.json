@@ -22,7 +22,7 @@
     "semantic-release": ">=15.11.x"
   },
   "dependencies": {
-    "semantic-release-plugin-decorators": "^4.0.0",
+    "semantic-release-plugin-decorators": "github:w4rlock/semantic-release-plugin-decorators#feat-node-18",
     "debug": "^3.1.0",
     "execa": "^0.8.0",
     "file-url": "^3.0.0",

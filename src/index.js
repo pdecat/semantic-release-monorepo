@@ -1,4 +1,4 @@
-import { wrapStep } from '@w4rlock/semantic-release-plugin-decorators';
+import { wrapStep } from 'semantic-release-plugin-decorators';
 import { compose } from 'ramda';
 import readPkg from 'read-pkg';
 import logPluginVersion from './log-plugin-version.js';
